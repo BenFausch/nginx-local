@@ -1,0 +1,28 @@
+#this is a default wordpress setup with nginx
+server {
+    listen       80;
+    server_name  local.breakingviews.com;
+    root    /Users/benfausch/sites/reuters-breaking-views-wp;
+    error_log /usr/local/etc/nginx/logs/phpmyadmin.error.log;
+    access_log  /usr/local/etc/nginx/logs/phpmyadmin.access.log main;
+    
+    #define index page
+    index  index.php index.html index.htm;
+    #favicon
+    location /favicon.ico {
+        add_header X-debug-message "favicon" always;
+        return 200;
+    }
+    #handle link structure
+    location / {
+    # This is cool because no php is touched for static content.
+    # include the "?$args" part so non-default permalinks doesn't break when using query string
+    try_files $uri $uri/ /index.php?$args;
+    }
+    #handle php files using php-fpm config
+    include   /usr/local/etc/nginx/conf.d/php-fpm;
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+        expires max;
+        log_not_found off;
+    }
+}

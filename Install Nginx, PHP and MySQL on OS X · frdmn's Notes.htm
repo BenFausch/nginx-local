@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<!-- saved from url=(0096)https://blog.frd.mn/install-nginx-php-fpm-mysql-and-phpmyadmin-on-os-x-mavericks-using-homebrew/ -->
+<html lang="en" class="js no-touch grunticon  wf-inactive color--turquoise" data-page-color-original="turquoise"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Install Nginx, PHP and MySQL on OS X · frdmn's Notes</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:url" content="https://blog.frd.mn">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jonas Friedmann">
+  <meta property="og:description" content="A nice blog">
+  <meta property="og:image" content="https://blog.frd.mn/assets/images/screenshot.f95ddf6cb3eef23a.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@frdmn">
+  <meta name="twitter:creator" content="@frdmn">
+
+  <link rel="stylesheet" href="./Install Nginx, PHP and MySQL on OS X · frdmn&#39;s Notes_files/style.e5de60a18e99d2e6.css" media="screen">
+  <link rel="stylesheet" href="./Install Nginx, PHP and MySQL on OS X · frdmn&#39;s Notes_files/print.a3486a9841939f6c.css" media="print">
+
+  <!-- Fav- & Apple-Touch-Icons -->
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://blog.frd.mn/assets/images/favicon/favicon.44d815e57e0c31ab.ico" type="image/x-icon">
+  <!-- non-retina iPhone pre iOS 7 -->
+  <link rel="apple-touch-icon" href="https://blog.frd.mn/assets/images/favicon/114x114.0deb236bc8efd4bf.png" sizes="57x57">
+  <!-- non-retina iPad pre iOS 7 -->
+  <link rel="apple-touch-icon" href="https://blog.frd.mn/assets/images/favicon/144x144.8a38e406adbc3491.png" sizes="72x72">
+  <!-- non-retina iPad iOS 7 -->
+  <link rel="apple-touch-icon" href="https://blog.frd.mn/assets/images/favicon/152x152.65f5d596d9b6f6be.png" sizes="76x76">
+  <!-- retina iPhone pre iOS 7 -->
+  <link rel="apple-touch-icon" href="https://blog.frd.mn/assets/images/favicon/114x114.0deb236bc8efd4bf.png" sizes="114x114">
+  <!-- retina iPhone iOS 7 -->
+  <link rel="apple-touch-icon" href="https://blog.frd.mn/assets/images/favicon/120x120.0d8655c3c83c53b9.png" sizes="120x120">
+  <!-- retina iPad pre iOS 7 -->
+  <link rel="apple-touch-icon" href="https://blog.frd.mn/assets/images/favicon/144x144.8a38e406adbc3491.png" sizes="144x144">
+  <!-- retina iPad iOS 7 -->
+  <link rel="apple-touch-icon" href="https://blog.frd.mn/assets/images/favicon/152x152.65f5d596d9b6f6be.png" sizes="152x152">
+  <!-- retina iPhone 6 iOS 7 -->
+  <link rel="apple-touch-icon" href="https://blog.frd.mn/assets/images/favicon/180x180.42c07e23aec984d7.png" sizes="180x180">
+
+  <!-- Grunticon -->
+  <link rel="stylesheet" href="./Install Nginx, PHP and MySQL on OS X · frdmn&#39;s Notes_files/icons.data.svg.680928c5574b58bc.css" media="all"><script src="./Install Nginx, PHP and MySQL on OS X · frdmn&#39;s Notes_files/analytics.js"></script><script src="./Install Nginx, PHP and MySQL on OS X · frdmn&#39;s Notes_files/buq7vrx.js" async=""></script><script>
+
+  /*! grunt-grunticon Stylesheet Loader - v2.1.2 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
+
+  (function(e){function t(t,n,r,o){"use strict";function a(){for(var e,n=0;u.length>n;n++)u[n].href&&u[n].href.indexOf(t)>-1&&(e=!0);e?i.media=r||"all":setTimeout(a)}var i=e.document.createElement("link"),l=n||e.document.getElementsByTagName("script")[0],u=e.document.styleSheets;return i.rel="stylesheet",i.href=t,i.media="only x",i.onload=o||null,l.parentNode.insertBefore(i,l),a(),i}var n=function(r,o){"use strict";if(r&&3===r.length){var a=e.navigator,i=e.Image,l=!(!document.createElementNS||!document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||e.opera&&-1===a.userAgent.indexOf("Chrome")||-1!==a.userAgent.indexOf("Series40")),u=new i;u.onerror=function(){n.method="png",n.href=r[2],t(r[2])},u.onload=function(){var e=1===u.width&&1===u.height,a=r[e&&l?0:e?1:2];n.method=e&&l?"svg":e?"datapng":"png",n.href=a,t(a,null,null,o)},u.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",document.documentElement.className+=" grunticon"}};n.loadCSS=t,e.grunticon=n})(this);(function(e,t){"use strict";var n=t.document,r="grunticon:",o=function(e){if(n.attachEvent?"complete"===n.readyState:"loading"!==n.readyState)e();else{var t=!1;n.addEventListener("readystatechange",function(){t||(t=!0,e())},!1)}},a=function(e){return t.document.querySelector('link[href$="'+e+'"]')},c=function(e){var t,n,o,a,c,i,u={};if(t=e.sheet,!t)return u;n=t.cssRules?t.cssRules:t.rules;for(var l=0;n.length>l;l++)o=n[l].cssText,a=r+n[l].selectorText,c=o.split(");")[0].match(/US\-ASCII\,([^"']+)/),c&&c[1]&&(i=decodeURIComponent(c[1]),u[a]=i);return u},i=function(e){var t,o,a;o="data-grunticon-embed";for(var c in e)if(a=c.slice(r.length),t=n.querySelectorAll(a+"["+o+"]"),t.length)for(var i=0;t.length>i;i++)t[i].innerHTML=e[c],t[i].style.backgroundImage="none",t[i].removeAttribute(o);return t},u=function(t){"svg"===e.method&&o(function(){i(c(a(e.href))),"function"==typeof t&&t()})};e.embedIcons=i,e.getCSS=a,e.getIcons=c,e.ready=o,e.svgLoadedCallback=u,e.embedSVG=u})(grunticon,this);
+
+  grunticon([
+    "https://blog.frd.mn/assets/icons/grunticon/icons.data.svg.680928c5574b58bc.css",
+    "https://blog.frd.mn/assets/icons/grunticon/icons.data.png.fb3206de31ccab37.css",
+    "https://blog.frd.mn/assets/icons/grunticon/icons.fallback.8bff4fa89010a8f1.css"
+  ], grunticon.svgLoadedCallback);
+
+  </script>
+  <noscript>&lt;link href="https://blog.frd.mn/assets/icons/grunticon/icons.fallback.8bff4fa89010a8f1.css" rel="stylesheet"&gt;</noscript>
+
+  <!-- Typekit -->
+  <script>
+    try{!function(e,t,n,a,r,c,s,l,o){window.XMLHttpRequest&&(s=a[r],s&&(l=e.createElement("style"),l.innerHTML=s,e.getElementsByTagName("head")[0].appendChild(l),e.documentElement.className+=" wf-cached"),o=t[n],t[n]=function(e,p,u,i){if("string"==typeof p&&p.indexOf(c)>-1){try{u=new XMLHttpRequest,u.open("GET",p,!0),u.onreadystatechange=function(){try{4==u.readyState&&(i=u.responseText.replace(/url\(\//g,"url("+c+"/"),i!==s&&(a[r]=i))}catch(e){l&&(l.innerHTML="")}},u.send(null)}catch(d){}t[n]=o}return o.apply(this,arguments)})}(document,Element.prototype,"setAttribute",localStorage,"tk","https://use.typekit.net");}catch(x){}
+  </script>
+  <script>
+    (function(d) {
+      var config = {
+        kitId: 'buq7vrx',
+        scriptTimeout: 3000,
+        async: true
+      },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+  </script>
+
+  <!-- Mini Modernizr -->
+  <script>!function(a,b){"use strict";b.documentElement.className=b.documentElement.className.replace("no-js","js"),("ontouchstart"in window||window.DocumentTouch&&document instanceof DocumentTouch)&&(document.documentElement.className=document.documentElement.className.replace("no-touch","touch"))}(window,document);</script>
+<script type="text/javascript" async="" src="./Install Nginx, PHP and MySQL on OS X · frdmn&#39;s Notes_files/embed.js"></script><link rel="preload" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.1b2848953aa0e43e07dcbf614b98c0ff.css"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.f676c84aeac20fb55187512d1a7172ca.js"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.367e50d1542fbd0ef9618cbfcc0653d9.js"><link rel="preload" as="script" href="https://disqus.com/next/config.js"></head>
+<body cz-shortcut-listen="true">
+  <div class="page-wrap">
+
+<div class="header-archive unprintable headroom headroom--top">
+  <div class="header-archive__content">
+    <div class="header-archive__content-inner">
+      <div class="page-main">
+        <div class="constrain constrain--max">
+          <h4 class="headline heading-5 headline--upper headline--spaced headline--light headline--darkbg space--bottom-half space--top-double">Latest Posts</h4>
+          <nav>
+            <ul class="big-list big-list--darkbg" data-page-color-reset="">
+                <li>
+                  <a href="https://blog.frd.mn/disable-wifi-debug-logging/" data-page-color="brown"><span class="big-list__title">Disable WiFi debug logging</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="25"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/new-blog/" data-page-color="orange"><span class="big-list__title">New blog</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="24"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/ios-9-and-untrusted-developer-message/" data-page-color="purple"><span class="big-list__title">iOS / Xcode and "Untrusted Developer"</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="23"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/install-os-x-10-10-yosemite-in-virtualbox/" data-page-color="pink"><span class="big-list__title">Install OS X 10.10 Yosemite in VirtualBox</span> <span class="comment-wrap comment-wrap--active"><span class="comment" data-disqus-identifier="22"><span class="tooltip">🔥🔥<span class="tooltip__content">This post has<br><i class="tooltip__highlight">52</i> comments.<br>Add yours!</span></span></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/backscatter-due-to-loopback-mx/" data-page-color="greyblue"><span class="big-list__title">Backscatter due to loopback MX</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="20"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/install-nginx-php-fpm-mysql-and-phpmyadmin-on-os-x-mavericks-using-homebrew/" data-page-color="turquoise"><span class="big-list__title">Install Nginx, PHP and MySQL on OS X</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="13"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/raspberry-pi-vpn-gateway/" data-page-color="green"><span class="big-list__title">Raspberry Pi VPN Gateway</span> <span class="comment-wrap comment-wrap--active"><span class="comment" data-disqus-identifier="18"><span class="tooltip">🔥🔥<span class="tooltip__content">This post has<br><i class="tooltip__highlight">50</i> comments.<br>Add yours!</span></span></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/how-to-set-up-proper-startstop-services-ubuntu-debian-mac-windows/" data-page-color="brown"><span class="big-list__title">How to set up proper start/stop services</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="15"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/java-7-on-os-x-yosemite/" data-page-color="purple"><span class="big-list__title">Java 7 on OS X Yosemite</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="17"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/communigate-pro-on-ubuntu-lts/" data-page-color="orange"><span class="big-list__title">Communigate Pro on Ubuntu LTS</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="16"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/chrooted-sftp-environment/" data-page-color="red"><span class="big-list__title">Chrooted SFTP environment</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="14"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/trouble-with-initramfs-tools-and-too-small-boot/" data-page-color="pink"><span class="big-list__title">Trouble with initramfs-tools and small /boot partition</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="12"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/andtek-agent-menu-bar-app-to-control-call-center-queues-3/" data-page-color="greyblue"><span class="big-list__title">AndTek OS X Client</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="11"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/the-centos-disc-was-not-found-in-any-of-your-drives/" data-page-color="turquoise"><span class="big-list__title">"The CentOS disc was not found in any of your drives"</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="8"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/circular-dig-or-odig/" data-page-color="green"><span class="big-list__title">Circular dig or odig</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="7"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/puzzling-with-os-xs-date/" data-page-color="red"><span class="big-list__title">Puzzling with OS X's date command</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="6"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/solving-unknown-table-engine-innodb/" data-page-color="brown"><span class="big-list__title">Solving "Unknown table engine 'InnoDB'"</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="5"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/munin-bukkit-plugins/" data-page-color="orange"><span class="big-list__title">Munin Bukkit plugins</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="4"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/custom-apple-icon-for-minidlna-incl-diff-patch/" data-page-color="pink"><span class="big-list__title">Custom Apple icon for MiniDLNA</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="3"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/how-to-fix-missing-x-forwarded-for-headers-for-qwebirc/" data-page-color="greyblue"><span class="big-list__title">How to fix missing X-Forwarded-For headers for qwebirc</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="2"></span></span></a>
+                </li>
+                <li>
+                  <a href="https://blog.frd.mn/welcome-to-ghost/" data-page-color="purple"><span class="big-list__title">How to blog like a hacker</span> <span class="comment-wrap"><span class="comment" data-disqus-identifier="1"></span></span></a>
+                </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-archive__nav">
+    <div class="title-bar header-archive__title-bar">
+      <div class="title-bar__inner">
+        <div class="constrain constrain--max">
+          <div class="content-swap header-archive__content-swap">
+            <div class="content-swap__original">
+              <div class="reveal">
+                <div class="reveal__original">
+                  <h3 class="headline heading-4 space--bottom-none ellipsis">Install Nginx, PHP and MySQL on OS X</h3>
+                </div>
+                <div class="reveal__swap">
+                <div class="split">
+                  <div class="split__title">
+                    <span class="reveal__swap-left text--secondary">19. October 2014</span>
+                  </div>
+                  <span class="reveal__swap-right text--secondary"><a href="https://blog.frd.mn/install-nginx-php-fpm-mysql-and-phpmyadmin-on-os-x-mavericks-using-homebrew/#comments" class="comment-single" data-disqus-identifier="13">0 Comments</a></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="content-swap__swap">
+              <h3 class="headline heading-4 space--bottom-none headline--maincolor">Post archive</h3>
+            </div>
+          </div>
+
+        </div>
+        <div class="title-bar__left" data-page-color-reset="">
+          <a href="https://blog.frd.mn/" data-page-color="blue">
+            <i class="icon--penrose-small-dark" style="background-image: none;"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg width="40px" height="37px" viewBox="0 0 40 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">        <title>penrose-small-dark</title>    <desc>Created with Sketch.</desc>    <defs>        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">            <feoffset dx="0" dy="15" in="SourceAlpha" result="shadowOffsetOuter1"></feoffset>            <fegaussianblur stdDeviation="0" in="shadowOffsetOuter1" result="shadowBlurOuter1"></fegaussianblur>            <fecolormatrix values="0 0 0 0 0.329411765   0 0 0 0 0.584313725   0 0 0 0 0.980392157  0 0 0 0.7 0" in="shadowBlurOuter1" type="matrix" result="shadowMatrixOuter1"></fecolormatrix>            <femerge>                <femergenode in="shadowMatrixOuter1"></femergenode>                <femergenode in="SourceGraphic"></femergenode>            </femerge>        </filter>    </defs>    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">        <g id="Post-scrolled-(to-top)" sketch:type="MSArtboardGroup" transform="translate(-31.000000, -25.000000)">            <text id="INSTALL-NGINX,-PHP-F" sketch:type="MSTextLayer" font-family="Futura PT" font-size="67" font-weight="633" sketch:alignment="middle">                <tspan x="62.7725" y="-298" fill="#000000">INSTALL NGINX, PHP-FPM, </tspan>                <tspan x="52.0525" y="-212" fill="#000000">MYSQL AND PHPMYADMIN </tspan>                <tspan x="92.353" y="-126" fill="#000000">ON OS X MAVERICKS OR </tspan>                <tspan x="321.292" y="-40" fill="#000000">YOSEMITE</tspan>                <tspan x="632.708" y="-40" font-size="38" fill="#000000"></tspan>                <tspan x="477" y="46" font-size="21" fill="#000000"></tspan>                <tspan x="301.0305" y="73" font-size="21" fill="#000000">24. JANUARY 2015 —  </tspan>                <tspan x="520.0815" y="73" font-size="21" fill="#1D77EF">0 COMMENTS</tspan>                <tspan x="652.9695" y="73" font-size="21" font-weight="313" fill="#000000"></tspan>            </text>            <rect id="Rectangle-1" fill="#FFFFFF" filter="url(#filter-1)" sketch:type="MSShapeGroup" x="0" y="0" width="937" height="87"></rect>            <g id="penrose" sketch:type="MSLayerGroup" transform="translate(31.000000, 25.000000)" fill="#000000">                <path d="M30.9090333,25.3254278 L15.2234896,25.3342163 L12.2148371,30.7452195 L39.9880683,30.7495795 L23.0449193,0.038259958 L16.7984942,0.0540559643 L30.9090333,25.3254278 L30.9090333,25.3254278 Z" id="right" opacity="0" sketch:type="MSShapeGroup"></path>                <path d="M16.7977215,0.0519807442 L0.0380228138,30.7446027 L3.11072988,36.309972 L17.0147307,10.9566251 L24.773317,25.3338275 L30.9187315,25.3338275 L16.7977215,0.0519807442 L16.7977215,0.0519807442 Z" id="left" opacity="0.494869403" sketch:type="MSShapeGroup"></path>                <path d="M20.0819132,16.6406584 L12.2014326,30.7493362 L39.9896578,30.763842 L37.1364558,36.3079385 L3.11197855,36.3079387 L17.0179398,10.9614076 L20.0819132,16.6406584 L20.0819132,16.6406584 Z" id="bottom" sketch:type="MSShapeGroup"></path>            </g>        </g>    </g></svg></i>
+          </a>
+        </div>
+        <div class="title-bar__right">
+          <button class="archive-toggle"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header id="static-title-bar" class="title-bar title-bar--fullclick space--bottom-double unprintable">
+  <div class="title-bar__inner text--center" data-page-color-reset="">
+    <a href="https://blog.frd.mn/" data-page-color="main">
+      <i class="icon--penrose-small"></i>
+    </a>
+  </div>
+</header>
+
+<div class="page-main">
+  <div class="constrain constrain--max">
+    <article>
+      <header class="post-header">
+        <h1 class="headline headline--upper text--center space--bottom-half">Install Nginx, PHP and MySQL on OS X</h1>
+        <div class="post-header__meta space--bottom-double text--center">
+          <div class="headline headline--upper headline--spaced heading-5">19. October 2014 —&nbsp;<a href="https://blog.frd.mn/install-nginx-php-fpm-mysql-and-phpmyadmin-on-os-x-mavericks-using-homebrew/#comments" class="comment-single" data-disqus-identifier="13">0 Comments</a></div>
+        </div>
+      </header>
+      <div class="post-content">
+        <p>Recently I got a new MacBook Pro and decided to set it up from scratch, because I've used the same Time Machine backup to migrate from about four years over and over again.</p>
+<p>Perfect time to get rid of the LAMP (Linux Apache MySQL PHP) web server stack and replace it with Nginx and PHP-FPM. Below you can read a detailed guide how to setup Nginx, PHP-FPM, MySQL and phpMyAdmin on OS X 10.9 / Mavericks.</p>
+<blockquote>
+<p><strong>Updated for Yosemite users</strong>: Updated the guide for OS X 10.10 since Yosemite is officially released. The steps are basically the same as for the Mavericks installation.</p>
+</blockquote>
+<h1 id="xcode">Xcode</h1>
+<p>First of all, get the latest <em>Xcode</em> version (6.1) via the Mac App Store: <a href="https://itunes.apple.com/en/app/xcode/id497799835">Mac App Store link</a></p>
+<p>As soon as the download is finished, open Xcode.app in your <code>/Applications</code> folder and agree to the licence.</p>
+<p>Open a new Terminal.app window and install the <em>Xcode command line tools</em>:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-0">xcode-select --install
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-0">✄ Copy</button></div></div>
+<p>Confirm the installation dialog with <code>Install</code>.</p>
+<p>Back in <em>Xcode</em>, hit <kbd>⌘</kbd> + <kbd>,</kbd> to access the <code>Preferences</code> and then navigate to the <code>Locations</code> tab to set the <code>Command Line Tools</code> to the latest version available — <code>Xcode 6.1 (61A1052c)</code> in my example:</p>
+<p><img src="./Install Nginx, PHP and MySQL on OS X · frdmn&#39;s Notes_files/1.d7c1466095deb66f.png" alt="Xcode.app → Preferences → Location | Command Line Tools"></p>
+<p>Make sure you have at least <em>Xcode</em> 6.1!</p>
+<h1 id="homebrew">Homebrew</h1>
+<p>Now you need to install <em>Homebrew</em>, a package manager for OS X — kind of like <code>apt</code> is one for Linux. <code>brew</code> works the same, just for Mac operating systems. It will make sure that you receive the latest updates of your installed packages, so you don't need to worry about outdated versions or vulnerable security flaws, etc.</p>
+<p>First, you need to download and install <em>Homebrew</em> using the following command:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-1">ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-1">✄ Copy</button></div></div>
+<p>Check for any conflicts or problems (If you have conflicts, sort them out before you continue with this guide):</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-2">brew doctor
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-2">✄ Copy</button></div></div>
+<p>Make sure the doctor responds with something along the lines:</p>
+<blockquote>
+<p>Your system is ready to brew.</p>
+</blockquote>
+<p>In case you already had <em>Homebrew</em> installed, update the existing <em>Homebrew</em> installation as well as the installed packages:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-3">brew update &amp;&amp; brew upgrade
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-3">✄ Copy</button></div></div>
+<h1 id="php-fpm">PHP-FPM</h1>
+<p>Because Homebrew doesn't come with a formula for <em>PHP-FPM</em> by default, you need to <code>tap</code> (or register) a special <em>PHP</em> repository first:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-4">brew tap homebrew/dupes
+brew tap homebrew/php
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-4">✄ Copy</button></div></div>
+<p>Now you can install <em>PHP</em> using the following command. The arguments make sure it compiles with <em>MySQL</em> support and doesn't configure the default Apache:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-5">brew install --without-apache --with-fpm --with-mysql php56
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-5">✄ Copy</button></div></div>
+<p>Homebrew is now going to download and compile the <em>PHP-FPM</em> source code for you. Give it some time, it could take some minutes. ☕</p>
+<h2 id="setup-php-cli-binary">Setup PHP CLI binary</h2>
+<p>If you want to use the <em>PHP</em> command line tools, you need to update the <code>$PATH</code> environment variable of your shell profile.</p>
+<p><strong>If you use the default <em>Bash</em> shell:</strong></p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-6">echo 'export PATH="/usr/local/sbin:$PATH"' &gt;&gt; ~/.bash_profile &amp;&amp; . ~/.bash_profile
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-6">✄ Copy</button></div></div>
+<p><strong>If you use <em>ZSH</em>:</strong></p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-7">echo 'export PATH="/usr/local/sbin:$PATH"' &gt;&gt; ~/.zshrc &amp;&amp; . ~/.zshrc
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-7">✄ Copy</button></div></div>
+<p>If you are not sure which one you use, run <code>echo $SHELL</code> in a Terminal.app window. Since I use <em>ZSH</em> it returns this:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="hljs" id="js-copy-code-8">/bin/zsh
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-8">✄ Copy</button></div></div><h2 id="setup-auto-start">Setup auto start</h2>
+<p>Create a folder for the LaunchAgents and symlink the start/stop service:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-9">mkdir -p ~/Library/LaunchAgents
+ln -sfv /usr/local/opt/php56/homebrew.mxcl.php56.plist ~/Library/LaunchAgents/
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-9">✄ Copy</button></div></div>
+<p>Now try to start <em>PHP-FPM</em>:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-10">launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-10">✄ Copy</button></div></div>
+<p>Assure <em>PHP-FPM</em> is running. To do so, check if there is an open listener on port <code>9000</code>:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-11">lsof -Pni4 | grep LISTEN | grep php
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-11">✄ Copy</button></div></div>
+<p>The output should look something like this:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="hljs" id="js-copy-code-12">php-fpm   69659  frdmn    6u  IPv4 0x8d8ebe505a1ae01      0t0  TCP 127.0.0.1:9000 (LISTEN)
+php-fpm   69660  frdmn    0u  IPv4 0x8d8ebe505a1ae01      0t0  TCP 127.0.0.1:9000 (LISTEN)
+php-fpm   69661  frdmn    0u  IPv4 0x8d8ebe505a1ae01      0t0  TCP 127.0.0.1:9000 (LISTEN)
+php-fpm   69662  frdmn    0u  IPv4 0x8d8ebe505a1ae01      0t0  TCP 127.0.0.1:9000 (LISTEN)
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-12">✄ Copy</button></div></div><h1 id="mysql">MySQL</h1>
+<p>Next step is to install our <em>MySQL</em> server:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-13">brew install mysql
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-13">✄ Copy</button></div></div>
+<p>And set up the start/stop service, so the <em>MySQL</em> server gets automatically started and stopped when the Mac is shutdown/powered on:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-14">ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
+</code></pre><button class="js-copy-code-button overflow-fade__button overflow-fade__button--stuck" data-clipboard-target="#js-copy-code-14">✔ Copied</button></div></div>
+<p>To start if manually for now, run:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-15">launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-15">✄ Copy</button></div></div>
+<h2 id="secure-the-installation">Secure the installation</h2>
+<p>To secure our <em>MySQL</em> server, we'll execute the provided <code>secure_mysql_installation</code> binary to change the root password, remove anonymous users and disable remote root logins:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-16">mysql_secure_installation
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-16">✄ Copy</button></div></div>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="hljs" id="js-copy-code-17">&gt; Enter current password for root (enter for none):
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-17">✄ Copy</button></div></div><p>Press <kbd>Enter</kbd> since you don't have one set.</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="hljs" id="js-copy-code-18">Change the root password? [Y/n]
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-18">✄ Copy</button></div></div><p>Confirm using <kbd>Enter</kbd> to accept the suggested default answer (<code>Y</code>), choose a root password, add it to your <em>1Password</em> keychain or just write it down and finally enter it here in the prompt.</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="hljs" id="js-copy-code-19">&gt; Remove anonymous users? [Y/n]
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-19">✄ Copy</button></div></div><p>Yes - <kbd>Enter</kbd>. They are not necessary.</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="hljs" id="js-copy-code-20">&gt; Disallow root login remotely? [Y/n]
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-20">✄ Copy</button></div></div><p><kbd>Enter</kbd> — No need to log in as root from any other IP than 127.0.0.1.</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="hljs" id="js-copy-code-21">&gt; Remove test database and access to it? [Y/n]
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-21">✄ Copy</button></div></div><p><kbd>Enter</kbd> — You don't need the testing tables.</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="hljs" id="js-copy-code-22">&gt; Reload privilege tables now? [Y/n]
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-22">✄ Copy</button></div></div><p><kbd>Enter</kbd> — Reload the privilege tables to ensure all of the changes made so far will take effect immediately.</p>
+<h2 id="test-connection">Test connection</h2>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-23">mysql -uroot -p
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-23">✄ Copy</button></div></div>
+<p>Enter your root password and you should see the <em>MySQL</em> console:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="hljs" id="js-copy-code-24">Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql&gt;
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-24">✄ Copy</button></div></div><p>Since you now know that this works, you can log out and quit the session using <code>\q</code>:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="hljs" id="js-copy-code-25">mysql&gt; \q
+Bye
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-25">✄ Copy</button></div></div><h1 id="phpmyadmin">phpMyAdmin</h1>
+<p>Install <code>autoconf</code>, which is needed for the installation of <em>phpMyAdmin</em>:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-26">brew install autoconf
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-26">✄ Copy</button></div></div>
+<p>And set the <code>$PHP_AUTOCONF</code> environment variable:</p>
+<p><strong>If you use the default <em>Bash</em> shell:</strong></p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-27">echo 'PHP_AUTOCONF="'$(which autoconf)'"' &gt;&gt; ~/.bash_profile &amp;&amp; . ~/.bash_profile
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-27">✄ Copy</button></div></div>
+<p><strong>or if you use <em>ZSH</em>:</strong></p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-28">echo 'PHP_AUTOCONF="'$(which autoconf)'"' &gt;&gt; ~/.zshrc &amp;&amp; . ~/.zshrc
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-28">✄ Copy</button></div></div>
+<p>Since now you're all set, you can finish this part with the actual installation of <em>phpMyAdmin</em>:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-29">brew install phpmyadmin
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-29">✄ Copy</button></div></div>
+<h1 id="nginx">Nginx</h1>
+<p>Install the default <em>Nginx</em> with:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-30">brew install nginx
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-30">✄ Copy</button></div></div>
+<h2 id="setup-auto-start">Setup auto start</h2>
+<p>Since you want to use port 80 (default HTTP port), you have to run the <em>Nginx</em> process with root privileges:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-31">sudo cp -v /usr/local/opt/nginx/*.plist /Library/LaunchDaemons/
+sudo chown root:wheel /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-31">✄ Copy</button></div></div>
+<p>(Only the root user is allowed to open listening ports &lt; 1024)</p>
+<h2 id="test-web-server">Test web server</h2>
+<p>Start <em>Nginx</em> for the first with:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-32">sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-32">✄ Copy</button></div></div>
+<p>The default configuration currently active so it will listen on port 8080 instead of the HTTP default port 80. Ignore that for now:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-33">curl -IL http://127.0.0.1:8080
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-33">✄ Copy</button></div></div>
+<p>The output should look like this:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="hljs" id="js-copy-code-34">HTTP/1.1 200 OK
+Server: nginx/1.6.2
+Date: Mon, 19 Oct 2014 19:07:47 GMT
+Content-Type: text/html
+Content-Length: 612
+Last-Modified: Mon, 19 Oct 2014 19:01:32 GMT
+Connection: keep-alive
+ETag: "5444dea7-264"
+Accept-Ranges: bytes
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-34">✄ Copy</button></div></div><p>Stop <em>Nginx</em> again:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-35">sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-35">✄ Copy</button></div></div>
+<h1 id="more-configuration">More configuration</h1>
+<h2 id="nginx-conf">nginx.conf</h2>
+<p>Create these bunch of folders which we're going to use for the upcoming configuration:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-36">mkdir -p /usr/local/etc/nginx/logs
+mkdir -p /usr/local/etc/nginx/sites-available
+mkdir -p /usr/local/etc/nginx/sites-enabled
+mkdir -p /usr/local/etc/nginx/conf.d
+mkdir -p /usr/local/etc/nginx/ssl
+sudo mkdir -p /var/www
+sudo chown :staff /var/www
+sudo chmod 775 /var/www
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-36">✄ Copy</button></div></div>
+<p>Remove the current <code>nginx.conf</code> (which is also available as <code>/usr/local/etc/nginx/nginx.conf.default</code> in case you want to restore the defaults) and download my custom from <em>GitHub</em>:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-37">rm /usr/local/etc/nginx/nginx.conf
+curl -L https://gist.github.com/frdmn/7853158/raw/nginx.conf -o /usr/local/etc/nginx/nginx.conf
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-37">✄ Copy</button></div></div>
+<p>The configuration is simple and as lightweight as possible: worker settings, log format/paths and some includes. None of unnecessary (and probably commented out) stuff like in the <code>nginx.conf.default</code>.</p>
+<h2 id="load-php-fpm">Load PHP FPM</h2>
+<p>Download my custom <em>PHP-FPM</em> configuration from <em>GitHub</em>:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-38">curl -L https://gist.github.com/frdmn/7853158/raw/php-fpm -o /usr/local/etc/nginx/conf.d/php-fpm
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-38">✄ Copy</button></div></div>
+<h2 id="setup-example-virtual-hosts">Setup example virtual hosts</h2>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-39">curl -L https://gist.github.com/frdmn/7853158/raw/sites-available_default -o /usr/local/etc/nginx/sites-available/default
+curl -L https://gist.github.com/frdmn/7853158/raw/sites-available_default-ssl -o /usr/local/etc/nginx/sites-available/default-ssl
+curl -L https://gist.github.com/frdmn/7853158/raw/sites-available_phpmyadmin -o /usr/local/etc/nginx/sites-available/phpmyadmin
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-39">✄ Copy</button></div></div>
+<p>Clone my example virtual hosts (including 404/403 error pages and a <code>phpinfo()</code> status site) using <code>git</code>:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-40">git clone http://git.frd.mn/frdmn/nginx-virtual-host.git /var/www
+rm -rf /var/www/.git
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-40">✄ Copy</button></div></div>
+<p>And remove the <code>.git</code> folder so your content won't get tracked by git.</p>
+<h2 id="setup-ssl">Setup SSL</h2>
+<p>Create a folder for our SSL certificates and private keys:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-41">mkdir -p /usr/local/etc/nginx/ssl
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-41">✄ Copy</button></div></div>
+<p>Generate 4096 bit RSA keys and the self-sign the certificates in one command:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-42">openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=US/ST=State/L=Town/O=Office/CN=localhost" -keyout /usr/local/etc/nginx/ssl/localhost.key -out /usr/local/etc/nginx/ssl/localhost.crt
+openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=US/ST=State/L=Town/O=Office/CN=phpmyadmin" -keyout /usr/local/etc/nginx/ssl/phpmyadmin.key -out /usr/local/etc/nginx/ssl/phpmyadmin.crt
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-42">✄ Copy</button></div></div>
+<h2 id="enable-virtual-hosts">Enable virtual hosts</h2>
+<p>Now you need to symlink the virtual hosts that you want to enable into the <code>sites-enabled</code> folder:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-43">ln -sfv /usr/local/etc/nginx/sites-available/default /usr/local/etc/nginx/sites-enabled/default
+ln -sfv /usr/local/etc/nginx/sites-available/default-ssl /usr/local/etc/nginx/sites-enabled/default-ssl
+ln -sfv /usr/local/etc/nginx/sites-available/phpmyadmin /usr/local/etc/nginx/sites-enabled/phpmyadmin
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-43">✄ Copy</button></div></div>
+<p>And start <em>Nginx</em> again:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-44">sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-44">✄ Copy</button></div></div>
+<h1 id="final-tests">Final tests</h1>
+<p>Congratulations, that's it! Everything should be set up and running. Click on the links below to ensure that your virtual hosts show the correct content:</p>
+<div class="overflow-fade"><div class="overflow-fade__inner"><table>
+<thead>
+<tr>
+<th style="text-align:left">Virtual host</th>
+<th style="text-align:left">Expected content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="http://localhost/">http://localhost</a></td>
+<td style="text-align:left">"Nginx works" page</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://localhost/info">http://localhost/info</a></td>
+<td style="text-align:left"><code>phpinfo()</code> status</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://localhost/nope">http://localhost/nope</a></td>
+<td style="text-align:left">"Not Found" page</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://localhost/">https://localhost:443</a></td>
+<td style="text-align:left">"Nginx works" page (SSL)</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://localhost/info">https://localhost:443/info</a></td>
+<td style="text-align:left"><code>phpinfo()</code> (SSL)</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://localhost/nope">https://localhost:443/nope</a></td>
+<td style="text-align:left">"Not Found" page (SSL)</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://localhost:306/">https://localhost:306</a></td>
+<td style="text-align:left">phpMyAdmin (SSL)</td>
+</tr>
+</tbody>
+</table></div></div>
+<h1 id="control-the-services">Control the services</h1>
+<p>Because your probably need to restart the one or other service sooner or later, you probably want to set up some aliases:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-45">curl -L https://gist.github.com/frdmn/7853158/raw/bash_aliases -o /tmp/.bash_aliases
+cat /tmp/.bash_aliases &gt;&gt; ~/.bash_aliases
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-45">✄ Copy</button></div></div>
+<p><strong>If you use the default <em>Bash</em> shell:</strong></p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-46">echo "source ~/.bash_aliases" &gt;&gt; ~/.bash_profile &amp;&amp; . ~/.bash_profile
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-46">✄ Copy</button></div></div>
+<p><strong>or if you use <em>ZSH</em>:</strong></p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-47">echo "source ~/.bash_aliases" &gt;&gt; ~/.zshrc &amp;&amp;  ~/.zshrc
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-47">✄ Copy</button></div></div>
+<p>Now you can use handy short aliases instead of typing the long <code>launchctl</code> commands:</p>
+<h2 id="nginx">Nginx</h2>
+<p>You can start, stop and restart <em>Nginx</em> with:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-48">nginx.start
+nginx.stop
+nginx.restart
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-48">✄ Copy</button></div></div>
+<p>To quickly tail the latest error or access logs:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-49">nginx.logs.access
+nginx.logs.default.access
+nginx.logs.phpmyadmin.access
+nginx.logs.default-ssl.access
+nginx.logs.error
+nginx.logs.phpmyadmin.error
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-49">✄ Copy</button></div></div>
+<p>Check config:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-50">sudo nginx -t
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-50">✄ Copy</button></div></div>
+<h2 id="php-fpm">PHP-FPM</h2>
+<p>Start, start and restart <em>PHP-FPM</em>:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-51">php-fpm.start
+php-fpm.stop
+php-fpm.restart
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-51">✄ Copy</button></div></div>
+<p>Check config:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-52">php-fpm -t
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-52">✄ Copy</button></div></div>
+<h2 id="mysql">MySQL</h2>
+<p>Start, start and restart your <em>MySQL</em> server:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-53">mysql.start
+mysql.stop
+mysql.restart
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-53">✄ Copy</button></div></div>
+<h1 id="faq">FAQ</h1>
+<p>Here are some of the frequently asked questions from the comments. In case you encounter any issues or problems, check below to find a solution.</p>
+<h3 id="nginx-emerg-mkdir-usr-local-var-run-nginx-client_body_temp-">Nginx: '[emerg] mkdir() "/usr/local/var/run/nginx/client_body_temp"'</h3>
+<blockquote>
+<p>Upgraded to Yosemite and now <em>Nginx</em> doesn't start anymore? Try to reinstall the <code>brew</code> formula:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-54">brew reinstall --force nginx
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-54">✄ Copy</button></div></div>
+</blockquote>
+<h3 id="php-fpm-lsof-pni4-grep-listen-grep-php-doesn-t-return-anything">PHP-FPM: 'lsof -Pni4 | grep LISTEN | grep php' doesn't return anything</h3>
+<blockquote>
+<p>Make sure your <code>$PATH</code> variable is properly set:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-55">echo $PATH | grep php56
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-55">✄ Copy</button></div></div>
+<p>If that command doesn't return anything at all, you probably forgot to adjust your <code>.zshrc</code>/<code>.bash_profile</code>. Make sure to add this line at the end:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-56">export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-56">✄ Copy</button></div></div>
+</blockquote>
+<h3 id="git-could-not-resolve-host-git-frd-mn-">git: 'Could not resolve host: git.frd.mn'</h3>
+<blockquote>
+<p>Probably an outage of my private hosted <em>GitLab</em> server. To fix this, simply try to get in touch with me. Either via <a href="https://twitter.com/frdmn">Twitter</a>, <a href="mailto:j@frd.mn">E-Mail</a> IRC (frdmn@freenode/espernet) or the comment section below.</p>
+</blockquote>
+<h3 id="curl-failed-to-connect-to-localhost-port-80-connection-refused-">curl: 'Failed to connect to localhost port 80: Connection refused'</h3>
+<blockquote>
+<p>This is an IPv6 related issue, originating in the <code>/etc/hosts</code> file of your Mac. To fix this, find the line "<code>fe80::1%lo0 localhost</code>" and comment it out. Or just use this one-liner:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-57">sudo sed -i "" 's/^fe80\:\:/\#fe80\:\:/g' /etc/hosts
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-57">✄ Copy</button></div></div>
+</blockquote>
+<h3 id="brew-configure-error-can-not-find-openssl-s-evp-h-">brew: 'configure: error: Can not find OpenSSL's <evp.h>'</evp.h></h3>
+<blockquote>
+<p>Make sure <em>Xcode</em> as well as Xcode's CLI tools as installed and up to date!</p>
+</blockquote>
+<h3 id="mavericks-compilation-error-while-building-php-missing-zlib">Mavericks: Compilation error while building PHP / missing zlib</h3>
+<blockquote>
+<p>Try to restore the <code>/usr/include</code> directory:</p>
+<div class="overflow-fade overflow-fade--code js-copy-code"><div class="overflow-fade__inner"><pre><code class="shell hljs" id="js-copy-code-58">sudo ln -s /Applications/Xcode5-DP.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/include /usr/include
+</code></pre><button class="js-copy-code-button overflow-fade__button" data-clipboard-target="#js-copy-code-58">✄ Copy</button></div></div>
+</blockquote>
+<hr>
+<p>Let me know in case you're stuck at some point or have general feedback or suggestions!</p>
+
+      </div>
+    </article>
+  </div>
+</div>
+<div class="page-post-end unprintable">
+  <div class="emoji emoji--large">🏁</div>
+</div>
+<div class="page-author unprintable">
+  <div class="constrain constrain--max">
+    <div class="media media--small">
+      <div class="media__img">
+        <img class="rounded-image" src="./Install Nginx, PHP and MySQL on OS X · frdmn&#39;s Notes_files/jonas.8b30aa6fcfa9e649.jpg" alt="Jonas Friedmann">
+      </div>
+      <div class="media__body text--center text-lap--left">
+        <h4 class="headline headline--spaced headline--light headline--upper headline--seperated heading-5 space--bottom-none">About the Author</h4>
+        <h4 class="headline heading-3 headline--upper space--bottom-none">Jonas Friedmann</h4>
+        <p class="text--secondary">network administrator, OS X user, Linux enthusiast and allergic to animals with hair/fur.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-comments unprintable">
+  <div class="constrain constrain--max">
+    <div class="page-comments__inner">
+      <h4 id="comments" class="headline headline--upper headline--seperated-space heading-2">Comments</h4>
+      <div id="disqus_thread"><iframe id="dsq-app2440" name="dsq-app2440" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Install Nginx, PHP and MySQL on OS X · frdmn&#39;s Notes_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 6798px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe><iframe id="indicator-north" name="indicator-north" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" style="width: 880px !important; border: none !important; overflow: hidden !important; top: 0px !important; min-width: 880px !important; max-width: 880px !important; position: fixed !important; z-index: 2147483646 !important; height: 18px !important; min-height: 18px !important; max-height: 18px !important; display: none !important;" src="./Install Nginx, PHP and MySQL on OS X · frdmn&#39;s Notes_files/saved_resource(2).html"></iframe><iframe id="indicator-south" name="indicator-south" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" style="width: 880px !important; border: none !important; overflow: hidden !important; bottom: 0px !important; min-width: 880px !important; max-width: 880px !important; position: fixed !important; z-index: 2147483646 !important; height: 18px !important; min-height: 18px !important; max-height: 18px !important; display: none !important;" src="./Install Nginx, PHP and MySQL on OS X · frdmn&#39;s Notes_files/saved_resource(3).html"></iframe></div>
+<script>!function(e,t,r,n,c,a,l){function i(t,r){return r=e.createElement('div'),r.innerHTML='<a href="'+t.replace(/"/g,'&quot;')+'"></a>',r.childNodes[0].getAttribute('href')}function o(e,t,r,n){for(r='',n='0x'+e.substr(t,2)|0,t+=2;t<e.length;t+=2)r+=String.fromCharCode('0x'+e.substr(t,2)^n);return i(r)}try{for(c=e.getElementsByTagName('a'),l='/cdn-cgi/l/email-protection#',n=0;n<c.length;n++)try{(t=(a=c[n]).href.indexOf(l))>-1&&(a.href='mailto:'+o(a.href,t+l.length))}catch(e){}for(c=e.querySelectorAll('.__cf_email__'),n=0;n<c.length;n++)try{(a=c[n]).parentNode.replaceChild(e.createTextNode(o(a.getAttribute('data-cfemail'),0)),a)}catch(e){}}catch(e){}}(document);</script><script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    // Required: on line below, replace text in quotes with your forum shortname
+    var disqus_shortname = 'frdmn';
+    var disqus_identifier = 13;
+
+    var disqus_config = function () {
+      this.page.url = 'http://blog.frd.mn/install-nginx-php-fpm-mysql-and-phpmyadmin-on-os-x-mavericks-using-homebrew';
+      this.page.identifier = 13;
+    };
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the &lt;a href="https://disqus.com/?ref_noscript" rel="nofollow"&gt;comments powered by Disqus.&lt;/a&gt;</noscript>
+    </div>
+  </div>
+</div>
+<!--
+<nav>
+    <a href="https://blog.frd.mn/raspberry-pi-vpn-gateway/">Raspberry Pi VPN Gateway</a>
+    <a href="https://blog.frd.mn/backscatter-due-to-loopback-mx/">Backscatter due to loopback MX</a>
+</nav>
+-->
+  </div>
+
+  <footer class="page-footer unprintable">
+    <div class="text--center" data-page-color-reset="">
+      <ul class="nav nav--slash">
+        <li>
+          <a href="https://blog.frd.mn/" data-page-color="main">Posts</a>
+        </li>
+          <li>
+            <a href="https://blog.frd.mn/about/" data-page-color="main">About</a>
+          </li>
+          <li>
+            <a href="https://blog.frd.mn/legal/" data-page-color="main">Legal</a>
+          </li>
+      </ul>
+    </div>
+  </footer>
+  <script src="./Install Nginx, PHP and MySQL on OS X · frdmn&#39;s Notes_files/build.c656dbcd2e963ef4.js"></script>
+
+  <!-- Google Analytics -->
+  <script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-46292455-1', 'frd.mn');ga('send','pageview');
+  </script>
+
+
+
+<iframe style="display: none;" src="./Install Nginx, PHP and MySQL on OS X · frdmn&#39;s Notes_files/saved_resource(4).html"></iframe></body></html>
