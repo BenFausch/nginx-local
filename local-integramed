@@ -1,0 +1,39 @@
+server {
+    listen        80;
+
+    server_name  local-integramed.com *.local-integramed.com;
+    root    /Users/benfausch/sites/integramed-wordpress-multisite;
+    error_log /usr/local/etc/nginx/logs/phpmyadmin.error.log;
+    access_log  /usr/local/etc/nginx/logs/phpmyadmin.access.log main;
+
+    # deny access to hidden files                                                 
+rewrite /\. /THROW_EXPLICIT_404 break;
+
+# set index priority
+index  index.php index.html index.htm;
+
+# forward php requests
+location ~ \.php$ {
+    try_files $uri =404;
+    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+    fastcgi_pass 127.0.0.1:9000;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+}
+
+# include   /usr/local/etc/nginx/conf.d/php-fpm;
+
+ # Wordpress /index.php redirect
+location / {
+    try_files $uri $uri/ /index.php?$args;
+}
+
+    # Use Prod upload folder if local file doesn't exist
+    location /wp-content/uploads {
+        try_files $uri $uri/ @produploads;
+    }
+    location @produploads {
+        rewrite (.*) http://prod-integramed.com$1;
+    }
+}
